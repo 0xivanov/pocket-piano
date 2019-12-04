@@ -23,11 +23,11 @@ class _LoginState extends State<Login> {
         children: <Widget>[
           SafeArea(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 30.0),
               child: Text(
                 "Login",
                 style: TextStyle(
-                  fontSize: 40.0,
+                  fontSize: 45.0,
                   letterSpacing: 1.0,
                   fontWeight: FontWeight.bold
                 ),
@@ -35,52 +35,67 @@ class _LoginState extends State<Login> {
             ),
           ),
           SizedBox(height: 50.0,),
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [BoxShadow(
-                color: Colors.grey.withOpacity(0.8),
-                spreadRadius: 10,
-                blurRadius: 5,
-                offset: Offset(0, 7), // changes position of shadow
-              )]
-            ),
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-            child: Form(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 20.0),
-                  TextFormField(
-                    onChanged: (value) {
-                      setState(() {
-                        email = value;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Email",
-                      icon: Icon(
-                        Icons.email,
-                        
-                      )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Material(
+                elevation: 10.0,
+                child: Container(
+                  height: 180.0,
+                  width: 380.5,
+                  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+                  child: Form(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 10.0),
+                        TextFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              email = value;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Email",
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff8B16FF),
+                                width: 2.0,
+                              ),
+                            ),
+                            icon: Icon(
+                              Icons.email,
+                              color: Color(0xff8B16FF),
+                            )
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          obscureText: true,
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Password",
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff8B16FF),
+                                width: 2.0,
+                              ),
+                            ),
+                            icon: Icon(
+                              Icons.vpn_key,
+                              color: Color(0xff8B16FF),
+                            )
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20.0),
-                  TextFormField(
-                    obscureText: true,
-                    onChanged: (value) {
-                      setState(() {
-                        password = value;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      icon: Icon(
-                        Icons.vpn_key
-                      )
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+            ],
           ),
           SizedBox(height: 20.0,),
           Row(
@@ -94,7 +109,8 @@ class _LoginState extends State<Login> {
                   child: Container(
                     height: 45.0,
                     width: 160.0,
-                    child: FlatButton(
+                    child: RaisedButton(
+                      elevation: 15.0,
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(19.0),
                       ),
