@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/services/auth.dart';
+import 'package:circular_check_box/circular_check_box.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _LoginState extends State<Login> {
   final AuthService _auth = AuthService();
   String email = "";
   String password = "";
+  bool rememberMe = false; 
 
 
   @override
@@ -158,6 +160,34 @@ class _LoginState extends State<Login> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              Container(
+                height: 90.0,
+                width: 200.0,
+                child: Stack(
+                  children: <Widget>[
+                    CircularCheckBox(
+                      activeColor: Color(0xff8B16FF),
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+                      value: rememberMe,
+                      onChanged: (bool value){
+                        setState(() {
+                          rememberMe = value;
+                        });
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment(0.4, -0.62),
+                      child: Text(
+                        "Remember me",
+                        style: TextStyle(
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.normal
+                        ),
+                      )
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 height: 100.0,
                 width: 180.0,
