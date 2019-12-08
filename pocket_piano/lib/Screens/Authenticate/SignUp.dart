@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/services/auth.dart';
-import 'package:circular_check_box/circular_check_box.dart';
 
-class Login extends StatefulWidget {
+class SingUp extends StatefulWidget {
 
   final Function toggleView;
-  Login({this.toggleView});
+  SingUp({this.toggleView});
   @override
-  _LoginState createState() => _LoginState();
+  _SingUpState createState() => _SingUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SingUpState extends State<SingUp> {
 
-  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
-  bool rememberMe = false;
-  final _formKey = GlobalKey<FormState>();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +27,7 @@ class _LoginState extends State<Login> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                   child: Text(
-                    "Login",
+                    "Sign Up",
                     style: TextStyle(
                       fontSize: 45.0,
                       letterSpacing: 1.0,
@@ -42,7 +36,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                SizedBox(width: 140,),
+                SizedBox(width: 100,),
                 Container(
                   width: 114.0,
                   height: 200.0,
@@ -169,35 +163,6 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                height: 90.0,
-                width: 200.0,
-                child: Stack(
-                  children: <Widget>[
-                    CircularCheckBox(
-                      activeColor: Color(0xff8B16FF),
-                      materialTapTargetSize: MaterialTapTargetSize.padded,
-                      value: rememberMe,
-                      onChanged: (bool value){
-                        setState(() {
-                          rememberMe = value;
-                        });
-                      },
-                    ),
-                    Align(
-                      alignment: Alignment(1.4, -0.75),
-                      child: Text(
-                        "Remember me",
-                        style: TextStyle(
-                          fontSize: 21.5,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold
-                        ),
-                      )
-                    ),
-                  ],
-                ),
-              ),
-              Container(
                 height: 100.0,
                 width: 180.0,
                 child: Align(
@@ -292,7 +257,7 @@ class _LoginState extends State<Login> {
                   },
                   color: Colors.white70,
                   child: Text(
-                    "Sign Up",
+                    "Login",
                     style: TextStyle(
                       fontSize: 41.0,
                       fontWeight: FontWeight.bold,
