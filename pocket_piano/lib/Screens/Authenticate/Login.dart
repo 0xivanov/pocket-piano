@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/services/auth.dart';
 import 'package:circular_check_box/circular_check_box.dart';
+import 'package:pocket_piano/Screens/Authenticate/SignUp.dart';
 
 class Login extends StatefulWidget {
-
-  final Function toggleView;
-  Login({this.toggleView});
   @override
   _LoginState createState() => _LoginState();
 }
@@ -288,7 +286,10 @@ class _LoginState extends State<Login> {
                 width: 180,
                 child: FlatButton(
                   onPressed: () {
-                    widget.toggleView();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SingUp())
+                    );
                   },
                   color: Colors.white70,
                   child: Text(

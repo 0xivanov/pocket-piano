@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SingUp extends StatefulWidget {
-
-  final Function toggleView;
-  SingUp({this.toggleView});
   @override
   _SingUpState createState() => _SingUpState();
 }
@@ -183,7 +180,7 @@ class _SingUpState extends State<SingUp> {
                       },
                       color: Color(0xff8B16FF),
                       child: Text(
-                        "LOGIN",
+                        "SIGN UP",
                         style: TextStyle(
                           fontSize: 19.0,
                           color: Colors.white,
@@ -253,7 +250,7 @@ class _SingUpState extends State<SingUp> {
                 width: 180,
                 child: FlatButton(
                   onPressed: () {
-                    widget.toggleView();
+                    Navigator.pop(context);
                   },
                   color: Colors.white70,
                   child: Text(
