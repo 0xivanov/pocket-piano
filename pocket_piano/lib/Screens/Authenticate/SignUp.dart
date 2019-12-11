@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/services/auth.dart';
 
 class SingUp extends StatefulWidget {
   @override
@@ -7,9 +9,12 @@ class SingUp extends StatefulWidget {
 
 class _SingUpState extends State<SingUp> {
 
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  //text field for state objects
   String email = "";
   String password = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +106,9 @@ class _SingUpState extends State<SingUp> {
                   children: <Widget>[
                     SizedBox(height: 10.0),
                     TextFormField(
+                      style: TextStyle(
+                        fontSize: 19.0
+                      ),
                       validator: (value) => value.isEmpty ? "Enter an email!" : null,
                       onChanged: (value) {
                         setState(() {
@@ -127,6 +135,9 @@ class _SingUpState extends State<SingUp> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       obscureText: true,
+                      style: TextStyle(
+                        fontSize: 19.0
+                      ),
                       validator: (value) => value.length < 6 ? "Enter a password 6+ characters long!" : null,
                       onChanged: (value) {
                         setState(() {
@@ -172,10 +183,41 @@ class _SingUpState extends State<SingUp> {
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(19.0),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          print(email);
-                          print(password);
+                          dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                          Navigator.of(context).pop();
+                          if(result == null){
+                            setState(() {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text(
+                                    "Please supply a valid email and password!",
+                                    style: TextStyle(
+                                      fontSize: 25.0
+                                    ),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text(
+                                        "I understand",
+                                        style: TextStyle(
+                                          fontSize: 22.0
+                                        ),
+                                      ),
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                          }
                         }
                       },
                       color: Color(0xff8B16FF),

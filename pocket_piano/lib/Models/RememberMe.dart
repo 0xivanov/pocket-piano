@@ -1,0 +1,4 @@
+class RememberMe{
+
+  String email;
+}

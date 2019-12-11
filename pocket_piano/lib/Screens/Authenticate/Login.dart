@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/Models/RememberMe.dart';
 import 'package:pocket_piano/services/auth.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:pocket_piano/Screens/Authenticate/SignUp.dart';
@@ -10,13 +11,15 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
+  static final _email = RememberMe();
+  final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
-  String email = "";
+  //text field for state objects
+  static String email = "";
   String password = "";
   bool rememberMe = false;
-  final _formKey = GlobalKey<FormState>();
-
-
+  String rememberMeEmail = _email.email;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +111,11 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     SizedBox(height: 10.0),
                     TextFormField(
+                      initialValue: rememberMeEmail,
                       validator: (value) => value.isEmpty ? "Enter an email!" : null,
+                      style: TextStyle(
+                        fontSize: 19.0
+                      ),
                       onChanged: (value) {
                         setState(() {
                           email = value;
@@ -134,6 +141,9 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       obscureText: true,
+                      style: TextStyle(
+                        fontSize: 19.0
+                      ),
                       validator: (value) => value.length < 6 ? "Enter a password 6+ characters long!" : null,
                       onChanged: (value) {
                         setState(() {
@@ -168,7 +178,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               Container(
                 height: 90.0,
-                width: 200.0,
+                width: 210.0,
                 child: Stack(
                   children: <Widget>[
                     CircularCheckBox(
@@ -182,7 +192,7 @@ class _LoginState extends State<Login> {
                       },
                     ),
                     Align(
-                      alignment: Alignment(1.4, -0.75),
+                      alignment: Alignment(0.9, -0.75),
                       child: Text(
                         "Remember me",
                         style: TextStyle(
@@ -208,10 +218,46 @@ class _LoginState extends State<Login> {
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(19.0),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          print(email);
-                          print(password);
+                          dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                          if(rememberMe){
+                            _email.email = email;
+                          } else{
+                            print(email);
+                            _email.email = null;
+                          }
+                          if(result == null){
+                            setState(() {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text(
+                                    "Please supply a valid email and password!",
+                                    style: TextStyle(
+                                      fontSize: 25.0
+                                    ),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text(
+                                        "I understand",
+                                        style: TextStyle(
+                                          fontSize: 22.0
+                                        ),
+                                      ),
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                          }
                         }
                       },
                       color: Color(0xff8B16FF),
