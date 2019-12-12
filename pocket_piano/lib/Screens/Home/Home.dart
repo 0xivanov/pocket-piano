@@ -8,13 +8,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   AuthService _auth = AuthService();
+  //text field for state objects
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(),
       appBar: AppBar(
         title: Text("Pocket Piano"),
         backgroundColor: Color(0xff8B16FF),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState.openDrawer();
+          },
+        ),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
