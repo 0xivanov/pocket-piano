@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
   static String email = "";
   String password = "";
   bool rememberMe = false;
-  String rememberMeEmail = _email.email;
+  String rememberMeEmail = _email.email; 
   
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class _LoginState extends State<Login> {
                         )
                       ),
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 16.0),
                     TextFormField(
                       obscureText: true,
                       style: TextStyle(
@@ -224,7 +224,6 @@ class _LoginState extends State<Login> {
                           if(rememberMe){
                             _email.email = email;
                           } else{
-                            print(email);
                             _email.email = null;
                           }
                           if(result == null){

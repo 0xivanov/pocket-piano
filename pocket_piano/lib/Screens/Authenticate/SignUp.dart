@@ -132,7 +132,7 @@ class _SingUpState extends State<SingUp> {
                         )
                       ),
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 16.0),
                     TextFormField(
                       obscureText: true,
                       style: TextStyle(
