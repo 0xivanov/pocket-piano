@@ -9,7 +9,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home>{
   static AuthService _auth = AuthService();
-  static Future<String> test() async {
+  static Future<String> getEmail() async {
     dynamic result = await _auth.getUserState();
     print(result.email);
     return result.email;
@@ -27,14 +27,47 @@ class _HomeState extends State<Home>{
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xff8B16FF),
+              ),
               accountName: Text("Ivan"),
               accountEmail:FutureBuilder<String>(
-                  future: test(),
+                  future: getEmail(),
                   builder: (context,snapshot) {
-                    return new Text(snapshot.data);
+                    if(snapshot.hasData){
+                      return Text(
+                        snapshot.data,
+                        style: TextStyle(
+                          fontSize: 20.0
+                        ),
+                      );
+                    } else{
+                      return null;
+                    }
                   },
                 ),
-            )
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(
+                  "P",
+                  style: TextStyle(
+                    color: Color(0xff8B16FF),
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              title: FlatButton(
+                onPressed: () {},
+                child: Text(
+                  "Settings",
+                  style: TextStyle(fontSize: 18.0),
+                ),
+              ),
+              trailing: Icon(Icons.settings),
+            ),
           ],
         ),
       ),
@@ -65,7 +98,7 @@ class _HomeState extends State<Home>{
               padding: EdgeInsets.all(15.0),
               child: FlatButton(
                 onPressed: () async {
-                  print(await test());
+                  print(await getEmail());
                 },
                 child: Column(
                   children: <Widget>[
