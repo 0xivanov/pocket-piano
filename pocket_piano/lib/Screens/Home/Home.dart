@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/Screens/Authenticate/Login.dart';
+import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
 import 'package:pocket_piano/services/auth.dart';
+import 'package:flutter/services.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -90,15 +91,18 @@ class _HomeState extends State<Home>{
           )
         ],
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Center(
             child: Container(
               width: 300.0,
               padding: EdgeInsets.all(15.0),
               child: FlatButton(
-                onPressed: () async {
-                  print(await getEmail());
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Keyboard()),
+                  );
                 },
                 child: Column(
                   children: <Widget>[

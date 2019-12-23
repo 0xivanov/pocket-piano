@@ -13,6 +13,8 @@ dependencies:
   cloud_firestore: ^0.12.10+2
   provider: ^3.2.0
   circular_check_box: ^1.0.1
+  flutter_midi: ^1.0.0
+  tonic: ^0.2.3
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +28,4 @@ flutter:
         - asset: fonts/Poppins-Regular.ttf
   assets:
     - assets/
+    - assets/sf2/Piano.SF2
