@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
 import 'package:pocket_piano/services/auth.dart';
-import 'package:flutter/services.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,6 +14,8 @@ class _HomeState extends State<Home>{
     print(result.email);
     return result.email;
   }
+
+
 
   //text field for state objects
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -93,10 +94,10 @@ class _HomeState extends State<Home>{
       ),
       body: ListView(
         children: <Widget>[
-          Center(
-            child: Container(
-              width: 300.0,
-              padding: EdgeInsets.all(15.0),
+          Container(
+            width: 300.0,
+            padding: EdgeInsets.all(15.0),
+            child: Center(
               child: FlatButton(
                 onPressed: () {
                   Navigator.push(
