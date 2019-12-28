@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
+import 'package:pocket_piano/Screens/Home/Practice/Practice.dart';
 import 'package:pocket_piano/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -74,7 +75,13 @@ class _HomeState extends State<Home>{
         ),
       ),
       appBar: AppBar(
-        title: Text("Pocket Piano"),
+        title: Text(
+          "The pocket piano",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 26.5,
+          ),
+        ),
         backgroundColor: Color(0xff8B16FF),
         leading: IconButton(
           icon: Icon(Icons.menu),
@@ -92,83 +99,180 @@ class _HomeState extends State<Home>{
           )
         ],
       ),
-      body: ListView(
+      body: Stack(
         children: <Widget>[
           Container(
-            width: 300.0,
-            padding: EdgeInsets.all(15.0),
-            child: Center(
-              child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Keyboard()),
-                  );
-                },
-                child: Column(
-                  children: <Widget>[
-                    Image(image: AssetImage('assets/piano.png')),
-                    SizedBox(height: 5.0,),
-                    Text(
-                      "Keyboard",
-                      style: TextStyle(
-                        fontSize: 30.0
-                      ),
-                    )
-                  ],
+            width: 114.0,
+            height: 200.0,
+            child: Stack(
+              children:<Widget>[
+                Align(
+                  alignment: Alignment(0.8,2.2),
+                  child: Container(
+                    height: 55.0,
+                    width: 55.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xff8B16FF),
+                      boxShadow: <BoxShadow> [
+                        BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(5, -5),
+                            blurRadius: 15.0,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment(-33.0,2.2),
+                  child: Container(
+                    height: 110.0,
+                    width: 110.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xff8B16FF),
+                      boxShadow: <BoxShadow> [
+                        BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(5, -5),
+                          blurRadius: 25.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ]
             ),
           ),
-          Center(
-            child: Container(
-              width: 235.0,
-              height: 300.0,
-              padding: EdgeInsets.symmetric(vertical: 22.0, horizontal: 15.0),
-              child: FlatButton(
-                onPressed: () {},
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 200.0,
-                      child: Image(image: AssetImage('assets/Note.png'))
+          Container(
+            width: 114.0,
+            height: 200.0,
+            child: Stack(
+              children:<Widget>[
+                Align(
+                  alignment: Alignment(10.1,5.2),
+                  child: Container(
+                    height: 55.0,
+                    width: 55.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xff8B16FF),
+                      boxShadow: <BoxShadow> [
+                        BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(5, -5),
+                            blurRadius: 15.0,
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 5.0,),
-                    Text(
-                      "Learn to play",
-                      style: TextStyle(
-                        fontSize: 30.0
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment(192.0,10.0),
+                  child: Container(
+                    height: 110.0,
+                    width: 110.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xff8B16FF),
+                      boxShadow: <BoxShadow> [
+                        BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(5, -5),
+                          blurRadius: 25.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ]
             ),
           ),
-          Center(
-            child: Container(
-              width: 220.0,
-              height: 220.0,
-              padding: EdgeInsets.all(0.0),
-              child: FlatButton(
-                onPressed: () {},
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 160.0,
-                      child: Image(image: AssetImage('assets/records.png'))
+          ListView(
+            children: <Widget>[
+              Container(
+                width: 300.0,
+                padding: EdgeInsets.all(15.0),
+                child: Center(
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Keyboard()),
+                      );
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Image(image: AssetImage('assets/piano.png')),
+                        SizedBox(height: 5.0,),
+                        Text(
+                          "Keyboard",
+                          style: TextStyle(
+                            fontSize: 30.0
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(height: 5.0,),
-                    Text(
-                      "Records",
-                      style: TextStyle(
-                        fontSize: 30.0
-                      ),
-                    )
-                  ],
+                  ),
                 ),
               ),
-            ),
+              Center(
+                child: Container(
+                  width: 235.0,
+                  height: 300.0,
+                  padding: EdgeInsets.symmetric(vertical: 22.0, horizontal: 15.0),
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Practice()),
+                      );
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 200.0,
+                          child: Image(image: AssetImage('assets/Note.png'))
+                        ),
+                        SizedBox(height: 5.0,),
+                        Text(
+                          "Learn to play",
+                          style: TextStyle(
+                            fontSize: 30.0
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: Container(
+                  width: 220.0,
+                  height: 220.0,
+                  padding: EdgeInsets.all(0.0),
+                  child: FlatButton(
+                    onPressed: () {},
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 160.0,
+                          child: Image(image: AssetImage('assets/records.png'))
+                        ),
+                        SizedBox(height: 5.0,),
+                        Text(
+                          "Records",
+                          style: TextStyle(
+                            fontSize: 30.0
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

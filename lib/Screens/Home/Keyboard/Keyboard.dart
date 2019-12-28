@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,6 +23,10 @@ class _KeyboardState extends State<Keyboard> {
 
   @override
   void initState() {
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.landscapeLeft,
+    //   DeviceOrientation.landscapeRight,
+    // ]);
     _settingsBloc.dispatch(CheckSettings());
     super.initState();
   }
@@ -29,6 +34,10 @@ class _KeyboardState extends State<Keyboard> {
   @override
   void dispose() {
     _settingsBloc.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 
@@ -57,21 +66,21 @@ class _KeyboardState extends State<Keyboard> {
                 ? ThemeUtils.dark
                 : null,
             home: HomeScreen(),
-            onGenerateTitle: (context) => I18n.of(context).title,
-            locale: settingState is SettingsReady
-                ? settingState.settings.locale
-                : Locale("en", "US"),
+            // onGenerateTitle: (context) => I18n.of(context).title,
+            // locale: settingState is SettingsReady
+            //     ? settingState.settings.locale
+            //     : Locale("en", "US"),
             localizationsDelegates: [
               i18n,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
             supportedLocales: i18n.supportedLocales,
-            localeResolutionCallback: i18n.resolution(
-              fallback: settingState is SettingsReady
-                  ? settingState.settings.locale
-                  : Locale("en", "US"),
-            ),
+            // localeResolutionCallback: i18n.resolution(
+            //   fallback: settingState is SettingsReady
+            //       ? settingState.settings.locale
+            //       : Locale("en", "US"),
+            // ),
           ),
         ),
       ),

@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/blocs/blocs.dart';
 import '../../data/blocs/settings/settings.dart';
-import '../../generated/i18n.dart';
 import '../../plugins/app_review/app_review.dart';
 import '../../plugins/midi/midi.dart';
 import '../../plugins/vibrate/vibrate.dart';
@@ -23,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   initState() {
     _loadSoundFont();
     Future.delayed(Duration(seconds: 60)).then((_) {
-      if (mounted) ReviewUtils.requestReview();
+      //if (mounted) ReviewUtils.requestReview();
     });
     super.initState();
   }
@@ -52,11 +51,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (context, state) => Scaffold(
-      
+      builder: (context, state) => Scaffold(  
         appBar: AppBar(
           title: Text(
-            I18n.of(context).title,
+            "The pocket piano",
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 30.0,
