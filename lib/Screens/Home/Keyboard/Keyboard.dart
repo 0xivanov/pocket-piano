@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'data/blocs/blocs.dart';
 import 'generated/i18n.dart';
-//import 'plugins/desktop/desktop.dart';
 import 'ui/home/screen.dart';
 import 'ui/theme.dart';
 

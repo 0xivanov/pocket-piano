@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
-import 'package:pocket_piano/Screens/Home/Practice/Practice.dart';
+import 'package:pocket_piano/Screens/Home/Practice/LearnToPlay.dart';
 import 'package:pocket_piano/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -20,7 +20,6 @@ class _HomeState extends State<Home>{
 
   //text field for state objects
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -253,7 +252,8 @@ class _HomeState extends State<Home>{
                   height: 220.0,
                   padding: EdgeInsets.all(0.0),
                   child: FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     child: Column(
                       children: <Widget>[
                         Container(
