@@ -5,17 +5,13 @@ import 'piano_slider.dart';
 
 class PianoView extends StatefulWidget {
   const PianoView({
-    this.showLabels,
     this.keyWidth,
     @required this.labelsOnlyOctaves,
-    this.disableScroll,
     this.feedback,
   });
 
   final double keyWidth;
-  final bool showLabels;
   final bool labelsOnlyOctaves;
-  final bool disableScroll;
   final bool feedback;
 
   @override
@@ -56,15 +52,13 @@ class _PianoViewState extends State<PianoView> {
           flex: 8,
           child: ListView.builder(
             itemCount: 7,
-            physics:
-                widget.disableScroll ? NeverScrollableScrollPhysics() : null,
             controller: _controller,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return PianoOctave(
                 octave: index * 12,
                 keyWidth: widget.keyWidth,
-                showLabels: widget.showLabels,
+                // showLabels: widget.showLabels,
                 labelsOnlyOctaves: widget.labelsOnlyOctaves,
                 feedback: widget.feedback,
               );

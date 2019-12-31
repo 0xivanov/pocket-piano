@@ -6,14 +6,14 @@ class PianoOctave extends StatelessWidget {
   const PianoOctave({
     this.keyWidth,
     this.octave,
-    @required this.showLabels,
+    //@required this.showLabels,
     @required this.labelsOnlyOctaves,
     this.feedback,
   });
 
   final double keyWidth;
   final int octave;
-  final bool showLabels;
+  //final bool showLabels;
   final bool labelsOnlyOctaves;
   final bool feedback;
 
@@ -57,7 +57,7 @@ class PianoOctave extends StatelessWidget {
       midi: midi + octave,
       accidental: accidental,
       keyWidth: keyWidth,
-      showLabels: showLabels,
+      //showLabels: showLabels,
       labelsOnlyOctaves: labelsOnlyOctaves,
       feedback: feedback,
     );

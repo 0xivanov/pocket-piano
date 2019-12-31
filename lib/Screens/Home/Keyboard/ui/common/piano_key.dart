@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tonic/tonic.dart';
 
-import '../../plugins/midi/midi.dart';
+import 'package:flutter_midi/flutter_midi.dart';
 import '../../plugins/vibrate/vibrate.dart';
 
 class PianoKey extends StatelessWidget {
@@ -9,7 +9,7 @@ class PianoKey extends StatelessWidget {
     @required this.keyWidth,
     this.midi,
     this.accidental,
-    @required this.showLabels,
+    //@required this.showLabels,
     @required this.labelsOnlyOctaves,
     this.feedback,
   });
@@ -17,7 +17,7 @@ class PianoKey extends StatelessWidget {
   final bool accidental;
   final double keyWidth;
   final int midi;
-  final bool showLabels;
+  //final bool showLabels;
   final bool labelsOnlyOctaves;
   final bool feedback;
 
@@ -28,13 +28,13 @@ class PianoKey extends StatelessWidget {
       highlightColor: Colors.grey,
       onTap: () {},
       onTapDown: (_) {
-        MidiUtils.play(midi);
+        FlutterMidi.playMidiNote(midi: midi);
         if (feedback) {
           VibrateUtils.light();
         }
       },
       onTapCancel: () {
-        MidiUtils.stop(midi);
+        FlutterMidi.stopMidiNote(midi: midi);
       },
       child: Builder(
         builder: (_) {
@@ -84,14 +84,13 @@ class PianoKey extends StatelessWidget {
   }
 
   bool buildShowLabels(String pitchName) {
-    if (showLabels) {
+    if (true) {
       if (labelsOnlyOctaves) {
         if (pitchName.replaceAll(RegExp("[0-9]"), "") == "C") return true;
         return false;
       }
       return true;
     }
-    return false;
   }
 }
 
