@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/RememberMe.dart';
+import 'package:pocket_piano/Screens/Loading.dart';
 import 'package:pocket_piano/services/auth.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:pocket_piano/Screens/Authenticate/SignUp.dart';
@@ -19,10 +20,11 @@ class _LoginState extends State<Login> {
   String password = "";
   bool rememberMe = false;
   String rememberMeEmail = _email.email; 
+  bool loading = false;
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -221,6 +223,7 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () async {
                           if(_formKey.currentState.validate()) {
+                            setState(()=> loading = true);
                             dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                             if(rememberMe){
                               _email.email = email;
@@ -229,6 +232,7 @@ class _LoginState extends State<Login> {
                             }
                             if(result == null){
                               setState(() {
+                                loading = false;
                                 showDialog(
                                   context: context,
                                   builder: (_) => AlertDialog(
@@ -241,19 +245,6 @@ class _LoginState extends State<Login> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                                     ),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text(
-                                          "I understand",
-                                          style: TextStyle(
-                                            fontSize: 22.0
-                                          ),
-                                        ),
-                                        onPressed: (){
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
                                   ),
                                 );
                               });

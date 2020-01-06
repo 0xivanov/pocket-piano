@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/Screens/Loading.dart';
 import 'package:pocket_piano/services/auth.dart';
 
 class SignUp extends StatefulWidget {
@@ -14,10 +15,11 @@ class _SignUpState extends State<SignUp> {
   //text field for state objects
   String email = "";
   String password = "";
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -186,10 +188,12 @@ class _SignUpState extends State<SignUp> {
                         ),
                         onPressed: () async {
                           if(_formKey.currentState.validate()) {
+                            setState(()=> loading = true);
                             dynamic result = await _auth.registerWithEmailAndPassword(email, password);
                             Navigator.of(context).pop();
                             if(result == null){
                               setState(() {
+                                loading = false;
                                 showDialog(
                                   context: context,
                                   builder: (_) => AlertDialog(
@@ -202,19 +206,6 @@ class _SignUpState extends State<SignUp> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                                     ),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text(
-                                          "I understand",
-                                          style: TextStyle(
-                                            fontSize: 22.0
-                                          ),
-                                        ),
-                                        onPressed: (){
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
                                   ),
                                 );
                               });
