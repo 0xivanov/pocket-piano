@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/Screens/Home/Keyboard/MidiSound.dart';
 import 'package:tonic/tonic.dart';
 
 import 'package:flutter_midi/flutter_midi.dart';
 import '../../plugins/vibrate/vibrate.dart';
 
 class PianoKey extends StatelessWidget {
-  const PianoKey({
+  PianoKey({
     @required this.keyWidth,
     this.midi,
     this.accidental,
@@ -20,6 +21,7 @@ class PianoKey extends StatelessWidget {
   //final bool showLabels;
   final bool labelsOnlyOctaves;
   final bool feedback;
+  MidiSound instance = MidiSound();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class PianoKey extends StatelessWidget {
       highlightColor: Colors.grey,
       onTap: () {},
       onTapDown: (_) {
+        instance.recordSound(midi);
         FlutterMidi.playMidiNote(midi: midi);
         if (feedback) {
           VibrateUtils.light();
@@ -41,14 +44,17 @@ class PianoKey extends StatelessWidget {
           final pitchName = Pitch.fromMidiNumber(midi).toString();
           final pianoKey = Stack(
             children: <Widget>[
-              Positioned.fill(
+              Positioned(
+                left: 0.0,
+                right: 0.0,
+                bottom: 0.0,
+                top: 0.0,
                 child: Semantics(
-                    button: true,
-                    hint: pitchName,
-                    child: Material(
-                      borderRadius: _borderRadius,
-                      color: accidental ? Colors.black : Colors.white,
-                    )),
+                  child: Material(
+                    borderRadius: _borderRadius,
+                    color: accidental ? Colors.black : Colors.white,
+                  ),
+                )
               ),
               Positioned(
                   left: 0.0,
@@ -63,17 +69,6 @@ class PianoKey extends StatelessWidget {
                       : Container()),
             ],
           );
-          if (accidental) {
-            return Container(
-                width: keyWidth,
-                margin: EdgeInsets.symmetric(horizontal: 2.0),
-                padding: EdgeInsets.symmetric(horizontal: keyWidth * .1),
-                child: Material(
-                    elevation: 6.0,
-                    borderRadius: _borderRadius,
-                    shadowColor: Color(0x802196F3),
-                    child: pianoKey));
-          }
           return Container(
               width: keyWidth,
               child: pianoKey,

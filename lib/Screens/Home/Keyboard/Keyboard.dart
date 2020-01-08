@@ -19,10 +19,10 @@ class _KeyboardState extends State<Keyboard> {
 
   @override
   void initState() {
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.landscapeLeft,
-    //   DeviceOrientation.landscapeRight,
-    // ]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     _settingsBloc.dispatch(CheckSettings());
     super.initState();
   }

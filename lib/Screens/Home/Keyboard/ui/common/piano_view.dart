@@ -30,11 +30,11 @@ class _PianoViewState extends State<PianoView> {
 
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: Axis.vertical,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Flexible(
-          flex: 1,
+        Container(
+          height: 39.0,
           child: Container(
             child: PianoSlider(
               keyWidth: widget.keyWidth,
@@ -48,22 +48,22 @@ class _PianoViewState extends State<PianoView> {
             ),
           ),
         ),
-        Flexible(
-          flex: 8,
+        Container(
+          height: 130.0,
           child: ListView.builder(
-            itemCount: 7,
-            controller: _controller,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return PianoOctave(
-                octave: index * 12,
-                keyWidth: widget.keyWidth,
-                // showLabels: widget.showLabels,
-                labelsOnlyOctaves: widget.labelsOnlyOctaves,
-                feedback: widget.feedback,
-              );
-            },
-          ),
+              itemCount: 7,
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return PianoOctave(
+                  octave: index * 12,
+                  keyWidth: widget.keyWidth,
+                  // showLabels: widget.showLabels,
+                  labelsOnlyOctaves: widget.labelsOnlyOctaves,
+                  feedback: widget.feedback,
+                );
+              },
+            ),
         ),
       ],
     );

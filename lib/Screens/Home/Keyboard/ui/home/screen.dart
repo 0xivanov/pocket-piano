@@ -51,16 +51,34 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) => Scaffold(  
-        // appBar: AppBar(
-        //   backgroundColor: Colors.black,
-        //   title: Text(
-        //     "The pocket piano",
-        //     style: TextStyle(
-        //       fontWeight: FontWeight.w700,
-        //       fontSize: 30.0,
-        //     ),
-        //   ),
-        // ),
+        appBar: AppBar(
+          backgroundColor: Color(0xff8B16FF),
+          title: Center(
+            child: Text(
+              "The pocket piano",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 30.0,
+              ),
+            ),
+          ),
+          leading: FlatButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: (){},
+              child: Icon(
+                Icons.fiber_manual_record,
+                color: Colors.red,
+                size: 40,
+              ),
+            ),
+          ],
+        ),
         body: SafeArea(
           child: Container(
             color: Colors.black,
