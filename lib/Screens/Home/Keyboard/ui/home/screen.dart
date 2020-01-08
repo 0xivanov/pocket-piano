@@ -2,11 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 
-import '../../data/blocs/blocs.dart';
-import '../../data/blocs/settings/settings.dart';
 import '../../plugins/vibrate/vibrate.dart';
 import '../common/index.dart';
 import '../common/piano_view.dart';
@@ -49,8 +46,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (context, state) => Scaffold(  
+    return Scaffold(  
         appBar: AppBar(
           backgroundColor: Color(0xff8B16FF),
           title: Center(
@@ -82,16 +78,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         body: SafeArea(
           child: Container(
             color: Colors.black,
-            child: _buildKeys(context, state.settings),
+            child: _buildKeys(context),
           ),
         ),
-      ),
     );
   }
 
-  Widget _buildKeys(BuildContext context, Settings settings) {
+  Widget _buildKeys(BuildContext context) {
     double keyWidth = 40 + (80 * 0.5);
-    final _vibrate = settings.shouldVibrate && canVibrate;
+    final _vibrate = true;
     return Flex(
       direction: Axis.vertical,
       children: <Widget>[
@@ -99,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           child: PianoView(
             keyWidth: keyWidth,
             //showLabels: settings.showLabels,
-            labelsOnlyOctaves: settings.labelsOnlyOctaves,
+            labelsOnlyOctaves: false,
             //disableScroll: settings.disableScroll,
             feedback: _vibrate,
           ),
@@ -108,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           child: PianoView(
             keyWidth: keyWidth,
             //showLabels: settings.showLabels,
-            labelsOnlyOctaves: settings.labelsOnlyOctaves,
+            labelsOnlyOctaves: false,
             //disableScroll: settings.disableScroll,
             feedback: _vibrate,
           ),

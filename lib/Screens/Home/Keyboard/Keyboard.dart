@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'data/blocs/blocs.dart';
 import 'ui/home/screen.dart';
 
 class Keyboard extends StatefulWidget {
@@ -15,7 +13,7 @@ class Keyboard extends StatefulWidget {
 }
 
 class _KeyboardState extends State<Keyboard> {
-  final _settingsBloc = SettingsBloc();
+  //final _settingsBloc = SettingsBloc();
 
   @override
   void initState() {
@@ -23,13 +21,13 @@ class _KeyboardState extends State<Keyboard> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    _settingsBloc.dispatch(CheckSettings());
+    //_settingsBloc.dispatch(CheckSettings());
     super.initState();
   }
 
   @override
   void dispose() {
-    _settingsBloc.dispose();
+    //_settingsBloc.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
@@ -39,16 +37,6 @@ class _KeyboardState extends State<Keyboard> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<SettingsBloc>(builder: (_) => _settingsBloc),
-      ],
-      child: BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (context, settingState) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
-        ),
-      ),
-    );
+    return HomeScreen();
   }
 }
