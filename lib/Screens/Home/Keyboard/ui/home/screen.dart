@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   initState() {
     _loadSoundFont();
     Future.delayed(Duration(seconds: 60)).then((_) {
-      //if (mounted) ReviewUtils.requestReview();
     });
     super.initState();
   }
@@ -29,20 +28,32 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2");
     });
     VibrateUtils.canVibrate.then((vibrate) {
-      // if (mounted)
         setState(() {
           canVibrate = vibrate;
         });
     });
   }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   print("State: $state");
-  //   _loadSoundFont();
-  // }
-
+  Duration _seconds = Duration(seconds: 0, microseconds: 0);
+  bool _playing = false;
+  Timer _timer;
   bool canVibrate = false;
+
+
+  void startTimer() {
+    const oneMimiSec = const Duration(milliseconds: 1);
+    _timer = new Timer.periodic(
+      oneMimiSec,
+      (Timer timer) => setState(
+        () {
+            _seconds = _seconds + oneMimiSec;
+        },
+      ),
+    );
+  }
+  void stopTimer(){
+    _timer.cancel();
+    _seconds = Duration(seconds: 0, microseconds: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +73,31 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             onPressed: (){
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back),
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
           ),
           actions: <Widget>[
-            FlatButton(
-              onPressed: (){},
-              child: Icon(
-                Icons.fiber_manual_record,
-                color: Colors.red,
-                size: 40,
-              ),
+            Row(
+              children: <Widget>[
+                Text("$_seconds"),
+                FlatButton(
+                  onPressed: (){
+                    _playing ? stopTimer() : startTimer(); 
+                    setState(() {_playing = !_playing;});
+                  },
+                  child: _playing ? Icon(
+                    Icons.pause,
+                    color: Colors.red,
+                    size: 40,
+                  ) : Icon(
+                    Icons.fiber_manual_record,
+                    color: Colors.red,
+                    size: 40,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -92,19 +118,17 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       children: <Widget>[
         Flexible(
           child: PianoView(
+            seconds: _seconds,
             keyWidth: keyWidth,
-            //showLabels: settings.showLabels,
             labelsOnlyOctaves: false,
-            //disableScroll: settings.disableScroll,
             feedback: _vibrate,
           ),
         ),
         Flexible(
           child: PianoView(
+            seconds: _seconds,
             keyWidth: keyWidth,
-            //showLabels: settings.showLabels,
             labelsOnlyOctaves: false,
-            //disableScroll: settings.disableScroll,
             feedback: _vibrate,
           ),
         ),

@@ -7,6 +7,7 @@ import '../../plugins/vibrate/vibrate.dart';
 
 class PianoKey extends StatelessWidget {
   PianoKey({
+    this.seconds,
     @required this.keyWidth,
     this.midi,
     this.accidental,
@@ -15,6 +16,7 @@ class PianoKey extends StatelessWidget {
     this.feedback,
   });
 
+  final Duration seconds;
   final bool accidental;
   final double keyWidth;
   final int midi;
@@ -30,11 +32,13 @@ class PianoKey extends StatelessWidget {
       highlightColor: Colors.grey,
       onTap: () {},
       onTapDown: (_) {
-        instance.recordSound(midi);
+        instance.recordSound(midi, seconds);
         FlutterMidi.playMidiNote(midi: midi);
         if (feedback) {
           VibrateUtils.light();
         }
+        print(MidiSound.midiSounds);
+        print(MidiSound.midiSeconds);
       },
       onTapCancel: () {
         FlutterMidi.stopMidiNote(midi: midi);

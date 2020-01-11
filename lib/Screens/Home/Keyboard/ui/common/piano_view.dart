@@ -5,11 +5,12 @@ import 'piano_slider.dart';
 
 class PianoView extends StatefulWidget {
   const PianoView({
+    this.seconds,
     this.keyWidth,
     @required this.labelsOnlyOctaves,
     this.feedback,
   });
-
+  final Duration seconds;
   final double keyWidth;
   final bool labelsOnlyOctaves;
   final bool feedback;
@@ -56,9 +57,9 @@ class _PianoViewState extends State<PianoView> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return PianoOctave(
+                  seconds: widget.seconds,
                   octave: index * 12,
                   keyWidth: widget.keyWidth,
-                  // showLabels: widget.showLabels,
                   labelsOnlyOctaves: widget.labelsOnlyOctaves,
                   feedback: widget.feedback,
                 );
