@@ -10,7 +10,7 @@ class PianoView extends StatefulWidget {
     @required this.labelsOnlyOctaves,
     this.feedback,
   });
-  final Duration seconds;
+  final double seconds;
   final double keyWidth;
   final bool labelsOnlyOctaves;
   final bool feedback;

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/Screens/Home/Keyboard/MidiSound.dart';
+import 'package:pocket_piano/Screens/Home/Keyboard/midi_sound.dart';
 import 'package:tonic/tonic.dart';
 
 import 'package:flutter_midi/flutter_midi.dart';
-import '../../plugins/vibrate/vibrate.dart';
 
 class PianoKey extends StatelessWidget {
   PianoKey({
@@ -16,7 +15,7 @@ class PianoKey extends StatelessWidget {
     this.feedback,
   });
 
-  final Duration seconds;
+  final double seconds;
   final bool accidental;
   final double keyWidth;
   final int midi;
@@ -34,9 +33,6 @@ class PianoKey extends StatelessWidget {
       onTapDown: (_) {
         instance.recordSound(midi, seconds);
         FlutterMidi.playMidiNote(midi: midi);
-        if (feedback) {
-          VibrateUtils.light();
-        }
         print(MidiSound.midiSounds);
         print(MidiSound.midiSeconds);
       },

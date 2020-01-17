@@ -12,7 +12,7 @@ class PianoOctave extends StatelessWidget {
     this.feedback,
   });
 
-  final Duration seconds;
+  final double seconds;
   final double keyWidth;
   final int octave;
   //final bool showLabels;

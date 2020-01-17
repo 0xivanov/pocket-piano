@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pocket_piano/Models/User.dart';
+import 'package:pocket_piano/Models/user.dart';
+
 
 class AuthService {
 

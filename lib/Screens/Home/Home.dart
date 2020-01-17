@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
-import 'package:pocket_piano/Screens/Home/Practice/LearnToPlay.dart';
+import 'package:pocket_piano/Screens/Home/Practice/learn_to_play.dart';
+import 'package:pocket_piano/Screens/Home/Records/records.dart';
 import 'package:pocket_piano/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -8,7 +9,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>{
+class _HomeState extends State<Home>{ 
   static AuthService _auth = AuthService();
   static Future<String> getEmail() async {
     dynamic result = await _auth.getUserState();
@@ -253,6 +254,10 @@ class _HomeState extends State<Home>{
                   padding: EdgeInsets.all(0.0),
                   child: FlatButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Records()),
+                      );
                     },
                     child: Column(
                       children: <Widget>[

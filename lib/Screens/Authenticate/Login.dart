@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/Models/RememberMe.dart';
+import 'package:pocket_piano/Models/remember_me.dart';
 import 'package:pocket_piano/Screens/Loading.dart';
 import 'package:pocket_piano/services/auth.dart';
 import 'package:circular_check_box/circular_check_box.dart';
-import 'package:pocket_piano/Screens/Authenticate/SignUp.dart';
+import 'package:pocket_piano/Screens/Authenticate/sign_up.dart';
 
 class Login extends StatefulWidget {
   @override

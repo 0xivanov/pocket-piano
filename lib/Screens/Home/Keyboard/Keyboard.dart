@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pocket_piano/Screens/Home/Keyboard/screen.dart';
 
-import 'ui/home/screen.dart';
 
 class Keyboard extends StatefulWidget {
   const Keyboard({

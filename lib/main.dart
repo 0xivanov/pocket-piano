@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/Models/User.dart';
-import 'package:pocket_piano/Screens/Wrapper.dart';
+import 'package:pocket_piano/Models/user.dart';
+import 'package:pocket_piano/Screens/wrapper.dart';
 import 'package:pocket_piano/services/auth.dart';
 import 'package:provider/provider.dart';
 
