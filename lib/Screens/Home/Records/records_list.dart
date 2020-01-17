@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/record.dart';
+import 'package:pocket_piano/Models/user.dart';
 import 'package:pocket_piano/Screens/Home/Records/record_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +15,6 @@ class _RecordsListState extends State<RecordsList> {
   Widget build(BuildContext context) {
 
     final records = Provider.of<List<Record>>(context);
-    
     return ListView.builder(
       itemCount: records.length,
       itemBuilder: (context, index) {
