@@ -13,19 +13,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home>{ 
   static AuthService _auth = AuthService();
-  static Future<String> getEmail() async {
-    dynamic result = await _auth.getUserState();
-    print(result.email);
-    return result.email;
-  }
-
-
-
   //text field for state objects
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: Scaffold(
@@ -38,21 +31,7 @@ class _HomeState extends State<Home>{
                   color: Color(0xff8B16FF),
                 ),
                 accountName: Text("Ivan"),
-                accountEmail:FutureBuilder<String>(
-                    future: getEmail(),
-                    builder: (context,snapshot) {
-                      if(snapshot.hasData){
-                        return Text(
-                          snapshot.data,
-                          style: TextStyle(
-                            fontSize: 20.0
-                          ),
-                        );
-                      } else{
-                        return null;
-                      }
-                    },
-                  ),
+                accountEmail: Text(user.email),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Text(

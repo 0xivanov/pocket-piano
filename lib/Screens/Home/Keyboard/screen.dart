@@ -3,12 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';
-import 'package:pocket_piano/Models/record.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Piano/piano_view.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/midi_sound.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/save_form.dart';
-import 'package:pocket_piano/Services/database.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -74,6 +71,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       ),
       leading: FlatButton(
         onPressed: (){
+          MidiSound.midiSeconds.clear();
+          MidiSound.midiSounds.clear();
           Navigator.pop(context);
         },
         child: Icon(
@@ -135,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       children: <Widget>[
         Flexible(
           child: PianoView(
-            seconds: _seconds,
+            seconds: _seconds.toStringAsFixed(1),
             keyWidth: keyWidth,
             labelsOnlyOctaves: false,
             feedback: _vibrate,
@@ -143,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ),
         Flexible(
           child: PianoView(
-            seconds: _seconds,
+            seconds: _seconds.toStringAsFixed(1),
             keyWidth: keyWidth,
             labelsOnlyOctaves: false,
             feedback: _vibrate,

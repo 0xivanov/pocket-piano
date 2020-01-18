@@ -15,7 +15,7 @@ class PianoKey extends StatelessWidget {
     this.feedback,
   });
 
-  final double seconds;
+  final String seconds;
   final bool accidental;
   final double keyWidth;
   final int midi;

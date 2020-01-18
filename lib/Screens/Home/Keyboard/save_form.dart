@@ -5,7 +5,7 @@ import 'package:pocket_piano/Models/user.dart';
 
 class SaveForm extends StatefulWidget {
   final List<int> midiSounds;
-  final List<double> midiSeconds;
+  final List<String> midiSeconds;
   final double duration;
   SaveForm({this.midiSounds, this.midiSeconds, this.duration});
   @override

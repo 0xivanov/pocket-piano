@@ -1,7 +1,6 @@
-  
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pocket_piano/Models/record.dart';
-import 'package:pocket_piano/Models/user.dart';
+
 
 class DatabaseService {
 
@@ -11,7 +10,7 @@ class DatabaseService {
 
   // collection reference
 
-  Future<void> updateUserData(String name, List<int> midiSounds, List<double> midiSeconds, double duration ) async {
+  Future<void> updateUserData(String name, List<int> midiSounds, List<String> midiSeconds, double duration ) async {
     final CollectionReference recordsCollection = Firestore.instance.collection('$uid');
     return await recordsCollection.document('${this.name}').setData({
       'name' : name,
@@ -33,8 +32,12 @@ class DatabaseService {
     }).toList();
   }
 
-  Stream<List<Record>> get test{
+  Stream<List<Record>> get getRecordsSnapshot{
     return Firestore.instance.collection('$uid').snapshots().map(_recordListFromSnapshot);
+  }
+
+  void deleteRecord(){
+    Firestore.instance.collection('$uid').document('${this.name}').delete();
   }
 
 }

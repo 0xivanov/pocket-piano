@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/record.dart';
 import 'package:pocket_piano/Models/user.dart';
@@ -17,7 +16,7 @@ class _RecordsState extends State<Records> {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     return StreamProvider<List<Record>>.value(
-      value: DatabaseService(uid: user.uid).test,
+      value: DatabaseService(uid: user.uid).getRecordsSnapshot,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Records"),

@@ -1,8 +1,8 @@
 class MidiSound {
 
   static var midiSounds =  List<int>();
-  static var midiSeconds =  List<double>();
-  void recordSound(int midi, double seconds){
+  static var midiSeconds =  List<String>();
+  void recordSound(int midi, String seconds){
     midiSounds.add(midi);
     midiSeconds.add(seconds);
   }

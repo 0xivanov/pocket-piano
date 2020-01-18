@@ -62,16 +62,5 @@ class AuthService {
       return null;
     }
   }
-
-
-    Future getUserState() async {
-    try {
-      FirebaseUser user = await _auth.currentUser();
-      return _userFromFirebaseUser(user);
-    } catch(e) {
-      print(e.toString());
-      return null;
-    }
-  }
 }
 
