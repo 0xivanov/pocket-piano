@@ -34,37 +34,43 @@ class _PianoViewState extends State<PianoView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Container(
-          height: 39.0,
+        Flexible(
+          flex: 3,
           child: Container(
-            child: PianoSlider(
-              keyWidth: widget.keyWidth,
-              currentOctave: _currentOctave,
-              octaveTapped: (int octave) {
-                setState(() {
-                  _currentOctave = octave;
-                });
-                _controller.jumpTo(currentOffset);
-              },
+            height: 39.0,
+            child: Container(
+              child: PianoSlider(
+                keyWidth: widget.keyWidth,
+                currentOctave: _currentOctave,
+                octaveTapped: (int octave) {
+                  setState(() {
+                    _currentOctave = octave;
+                  });
+                  _controller.jumpTo(currentOffset);
+                },
+              ),
             ),
           ),
         ),
-        Container(
-          height: 130.0,
-          child: ListView.builder(
-              itemCount: 7,
-              controller: _controller,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                return PianoOctave(
-                  seconds: widget.seconds,
-                  octave: index * 12,
-                  keyWidth: widget.keyWidth,
-                  labelsOnlyOctaves: widget.labelsOnlyOctaves,
-                  feedback: widget.feedback,
-                );
-              },
-            ),
+        Flexible(
+          flex: 8,
+          child: Container(
+            height: 130.0,
+            child: ListView.builder(
+                itemCount: 7,
+                controller: _controller,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return PianoOctave(
+                    seconds: widget.seconds,
+                    octave: index * 12,
+                    keyWidth: widget.keyWidth,
+                    labelsOnlyOctaves: widget.labelsOnlyOctaves,
+                    feedback: widget.feedback,
+                  );
+                },
+              ),
+          ),
         ),
       ],
     );

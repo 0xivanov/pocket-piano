@@ -34,7 +34,7 @@ class PianoOctave extends StatelessWidget {
       Positioned(
           left: 0.0,
           right: 0.0,
-          bottom: 70,
+          bottom: 60,
           top: 0.0,
           child: Row(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,

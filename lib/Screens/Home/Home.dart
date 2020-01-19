@@ -62,7 +62,7 @@ class _HomeState extends State<Home>{
             "The pocket piano",
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 26.5,
+              fontSize: 23.5,
             ),
           ),
           backgroundColor: Color(0xff8B16FF),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/record.dart';
 import 'package:pocket_piano/Models/user.dart';
@@ -18,9 +20,17 @@ class RecordTile extends StatelessWidget {
         child: ListTile(
           title: Text("${record.name}"),
           onTap: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PlayRecord(record: record)),
+            showGeneralDialog(
+              context: context,
+              barrierDismissible: true,
+              barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+              transitionDuration: const Duration(milliseconds: 200),
+              pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation){
+                return BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                  child: PlayRecord(record: record)
+                );
+              }
             );
           },
           trailing: FlatButton.icon(

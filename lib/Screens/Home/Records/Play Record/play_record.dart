@@ -28,11 +28,11 @@ class _PlayRecordState extends State<PlayRecord> {
         () {
           if(_seconds.toStringAsFixed(1) == widget.record.duration.toStringAsFixed(1)) return;
           if(_seconds.toStringAsFixed(1) == widget.record.midiSeconds[_index]){
+            FlutterMidi.playMidiNote(midi : widget.record.midiSounds[_index]);
             if(widget.record.midiSeconds.length >= _index){
               _index++;
             }else
             return;
-            FlutterMidi.playMidiNote(midi : widget.record.midiSounds[_index]);
           }
           _seconds = _seconds + 0.1;
         },
@@ -40,15 +40,28 @@ class _PlayRecordState extends State<PlayRecord> {
     );
   }
 
-    return Scaffold(
-      body: Container(
-        child: FlatButton(
-          onPressed: (){
-            startTimer();
-          },
-          child: Text("${widget.record.midiSeconds[_index]}"),
+  return SimpleDialog(
+      title: Text('Play Record'),
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            RaisedButton.icon(
+              color: Color(0xff8B16FF),
+              label: Text("Play"),
+              icon: Icon(Icons.play_circle_filled),
+              onPressed: (){startTimer();},
+            ),
+            RaisedButton(
+              color: Colors.blue,
+              child: Text("Back"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            )
+          ],
         ),
-      ),
+      ],
     );
   }
 }

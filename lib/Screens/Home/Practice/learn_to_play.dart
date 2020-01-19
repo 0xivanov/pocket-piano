@@ -41,91 +41,7 @@ class _PracticeState extends State<Practice> {
                       Text(
                         "We Wish You a Merry Christmas",
                         style: TextStyle(
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
-                            style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
-                            )
-                          ),
-                        ),
-                        onPressed: (){},
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
-                            style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
-                            )
-                          ),
-                        ),
-                        onPressed: (){},
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 25.0,
                           fontWeight: FontWeight.bold
                         )
                       ),
@@ -168,7 +84,7 @@ class _PracticeState extends State<Practice> {
                       Text(
                         "We Wish You a Merry Christmas",
                         style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 25.0,
                           fontWeight: FontWeight.bold
                         )
                       ),
@@ -211,7 +127,7 @@ class _PracticeState extends State<Practice> {
                       Text(
                         "We Wish You a Merry Christmas",
                         style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 25.0,
                           fontWeight: FontWeight.bold
                         )
                       ),
@@ -254,7 +170,50 @@ class _PracticeState extends State<Practice> {
                       Text(
                         "We Wish You a Merry Christmas",
                         style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
+                      Text(
+                        "Complete: 20 %",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w400
+                        )
+                      ),
+                      RaisedButton(
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(19.0),
+                        ),
+                        color: Color(0xff8B16FF),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            "Practice",
+                            style: TextStyle(
+                              fontSize: 23.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            )
+                          ),
+                        ),
+                        onPressed: (){},
+
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Container(
+                  height: 180.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        "We Wish You a Merry Christmas",
+                        style: TextStyle(
+                          fontSize: 25.0,
                           fontWeight: FontWeight.bold
                         )
                       ),

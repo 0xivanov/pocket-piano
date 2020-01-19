@@ -87,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               onPressed: (){
                 setState(() {
                   _seconds = 0;
+                  _timer.cancel();
                   MidiSound.midiSeconds.clear();
                   MidiSound.midiSounds.clear();
                 });

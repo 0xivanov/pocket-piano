@@ -19,7 +19,13 @@ class _RecordsState extends State<Records> {
       value: DatabaseService(uid: user.uid).getRecordsSnapshot,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Records"),
+          title: Text(
+            "Records",
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 26.5,
+            ),
+          ),
           backgroundColor: Color(0xff8B16FF),
         ),
         body: RecordsList(),
