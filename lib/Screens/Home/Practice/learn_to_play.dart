@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/Screens/Home/Practice/Songs/WeWishUMerryXmas/we_wish_you_merry_xmas.dart';
 
 class Practice extends StatefulWidget {
   @override
@@ -69,7 +70,12 @@ class _PracticeState extends State<Practice> {
                             )
                           ),
                         ),
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => WeWishYouMerryXmas()),
+                          );
+                        },
 
                       )
                     ],

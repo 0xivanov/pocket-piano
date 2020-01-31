@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   }
 
   Widget _buildKeys(BuildContext context) {
-    double keyWidth = 40 + (80 * 0.5);
+    double keyWidth = 80;
     final _vibrate = true;
     return Flex(
       direction: Axis.vertical,

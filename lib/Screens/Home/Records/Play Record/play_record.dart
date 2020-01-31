@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:pocket_piano/Models/record.dart';
-import 'package:provider/provider.dart';
 
 class PlayRecord extends StatefulWidget {
   final Record record;
