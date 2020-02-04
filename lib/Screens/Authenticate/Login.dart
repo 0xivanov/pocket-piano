@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
             Center(
               child: Container(
                 height: 206.0,
-                width: 380.5,
+                width: 350.5,
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                 decoration: BoxDecoration(
                   boxShadow: <BoxShadow> [BoxShadow(

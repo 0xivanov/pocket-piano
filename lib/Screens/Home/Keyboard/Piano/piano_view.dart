@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'piano_octave.dart';
 import 'piano_slider.dart';
@@ -25,6 +26,10 @@ class _PianoViewState extends State<PianoView> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     _controller = ScrollController(initialScrollOffset: currentOffset);
     super.initState();
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/record.dart';
 import 'package:pocket_piano/Models/user.dart';
 import 'package:pocket_piano/Screens/Home/Records/record_tile.dart';
+import 'package:pocket_piano/Screens/loading.dart';
 import 'package:pocket_piano/Services/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +16,13 @@ class _RecordsListState extends State<RecordsList> {
   Widget build(BuildContext context) {
 
     final records = Provider.of<List<Record>>(context);
+
     return StreamProvider<User>.value(
       value: AuthService().user,
-      child: ListView.builder(
+      child: records == null ? Loading() : ListView.builder(
         itemCount: records.length,
         itemBuilder: (context, index) {
-          return RecordTile(record: records[index]);
+          return RecordTile(record: records[index],);
         },
       ),
     );

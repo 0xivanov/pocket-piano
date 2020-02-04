@@ -27,15 +27,13 @@ class Line extends AnimatedWidget {
       //specify note distance from top
       int index = currentNotes.indexOf(note);
       double offset = (1.5 - index + animation.value) * tileHeight;
-
       return Transform.translate(
         offset: Offset(0, offset),
         child: Tile(
-          height: tileHeight,
+          noteState: note.state,
         ),
       );
     }).toList();
-    
     
     return SizedBox.expand(
       child: Stack(

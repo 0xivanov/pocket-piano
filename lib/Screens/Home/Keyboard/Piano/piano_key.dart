@@ -6,6 +6,7 @@ import 'package:flutter_midi/flutter_midi.dart';
 
 class PianoKey extends StatelessWidget {
   PianoKey({
+    this.onTileTap,
     this.seconds,
     @required this.keyWidth,
     this.midi,
@@ -15,6 +16,7 @@ class PianoKey extends StatelessWidget {
     this.feedback,
   });
 
+  final Function(int) onTileTap;
   final String seconds;
   final bool accidental;
   final double keyWidth;
@@ -31,6 +33,7 @@ class PianoKey extends StatelessWidget {
       highlightColor: Colors.grey,
       onTap: () {},
       onTapDown: (_) {
+        onTileTap(midi);
         instance.recordSound(midi, seconds);
         FlutterMidi.playMidiNote(midi: midi);
         print(MidiSound.midiSounds);

@@ -35,5 +35,9 @@ flutter:
       fonts:
         - asset: fonts/Poppins-Regular.ttf
   assets:
-    - assets/
+    - assets/note.png
+    - assets/piano.png
+    - assets/practice.png
+    - assets/records.png
+    - assets/small_note.png
     - assets/sf2/Piano.sf2

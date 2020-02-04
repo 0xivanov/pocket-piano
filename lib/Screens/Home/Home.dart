@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_piano/Models/user.dart';
-import 'package:pocket_piano/Screens/Home/Keyboard/Keyboard.dart';
+import 'package:pocket_piano/Screens/Home/Keyboard/screen.dart';
 import 'package:pocket_piano/Screens/Home/Practice/learn_to_play.dart';
 import 'package:pocket_piano/Screens/Home/Records/records.dart';
 import 'package:pocket_piano/services/auth.dart';
@@ -134,7 +134,7 @@ class _HomeState extends State<Home>{
               child: Stack(
                 children:<Widget>[
                   Align(
-                    alignment: Alignment(10.1,5.2),
+                    alignment: Alignment(9.1,5.2),
                     child: Container(
                       height: 55.0,
                       width: 55.0,
@@ -152,7 +152,7 @@ class _HomeState extends State<Home>{
                     ),
                   ),
                   Align(
-                    alignment: Alignment(192.0,10.0),
+                    alignment: Alignment(174.0,10.0),
                     child: Container(
                       height: 110.0,
                       width: 110.0,
@@ -182,7 +182,7 @@ class _HomeState extends State<Home>{
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Keyboard()),
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
                         );
                       },
                       child: Column(
@@ -215,8 +215,8 @@ class _HomeState extends State<Home>{
                       child: Column(
                         children: <Widget>[
                           Container(
-                            height: 200.0,
-                            child: Image(image: AssetImage('assets/Note.png'))
+                            height: 190.0,
+                            child: Image(image: AssetImage('assets/note.png'))
                           ),
                           SizedBox(height: 5.0,),
                           Text(

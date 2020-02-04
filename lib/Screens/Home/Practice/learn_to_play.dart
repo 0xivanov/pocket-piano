@@ -27,7 +27,7 @@ class _PracticeState extends State<Practice> {
               ),
               background: Image(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/Practice.png')
+                image: AssetImage('assets/practice.png')
               ),
             ),
           ),

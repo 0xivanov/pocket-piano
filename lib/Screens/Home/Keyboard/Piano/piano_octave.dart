@@ -4,6 +4,7 @@ import 'piano_key.dart';
 
 class PianoOctave extends StatelessWidget {
   const PianoOctave({
+    this.onTileTap,
     this.seconds,
     this.keyWidth,
     this.octave,
@@ -12,6 +13,7 @@ class PianoOctave extends StatelessWidget {
     this.feedback,
   });
 
+  final Function(int) onTileTap;
   final String seconds;
   final double keyWidth;
   final int octave;
@@ -55,6 +57,7 @@ class PianoOctave extends StatelessWidget {
 
   Widget _buildKey(int midi, bool accidental) {
     return PianoKey(
+      onTileTap: onTileTap,
       seconds: seconds,
       midi: midi + octave,
       accidental: accidental,
