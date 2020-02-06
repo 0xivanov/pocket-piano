@@ -26,11 +26,12 @@ class Line extends AnimatedWidget {
     List<Widget> tiles = thisLineNotes.map((note) {
       //specify note distance from top
       int index = currentNotes.indexOf(note);
-      double offset = (1.5 - index + animation.value) * tileHeight;
+      double offset = (0.0 - index + animation.value) * tileHeight;
       return Transform.translate(
         offset: Offset(0, offset),
         child: Tile(
           noteState: note.state,
+          height: height
         ),
       );
     }).toList();

@@ -3,21 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/Piano/piano_octave.dart';
 import 'package:pocket_piano/Screens/Home/Keyboard/midi_sound.dart';
-import 'package:pocket_piano/Screens/Home/Practice/Songs/WeWishUMerryXmas/song_provider.dart';
 import 'package:pocket_piano/Screens/Home/Practice/line.dart';
 import 'package:pocket_piano/Screens/Home/Practice/notes.dart';
 
 
-class WeWishYouMerryXmas extends StatefulWidget {
+class PlaySong extends StatefulWidget {
+  final List<Note> notes;
+  PlaySong({ Key key, this.notes}) : super (key: key);
   @override
-  _WeWishYouMerryXmasState createState() => _WeWishYouMerryXmasState();
+  _PlaySongState createState() => _PlaySongState();
 }
 
-class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTickerProviderStateMixin {
+class _PlaySongState extends State<PlaySong> with SingleTickerProviderStateMixin {
 
   ScrollController  _controller = ScrollController();
   ScrollController  _controller2 = ScrollController();
-  List<Note> notes = initNotes();
+  //List<Note> notes = initNotes();
   int currentNoteIndex = 0;
   AnimationController animationController;
   int index;
@@ -27,8 +28,8 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
 
   @override
   void initState() {
-        super.initState();
-            SystemChrome.setPreferredOrientations([
+    super.initState();
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
@@ -36,9 +37,7 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
         AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
     animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        if (currentNoteIndex == notes.length - 4) {
-          //song finished
-        } else {
+        if (!(currentNoteIndex == widget.notes.length - 4)) {
           setState(() => ++currentNoteIndex);
           animationController.forward(from: -10);
         }
@@ -70,7 +69,7 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Score : $_score points out of ${notes.length - 4}"),
+        title: Text("Score : $_score points out of ${widget.notes.length - 4}"),
         backgroundColor: Color(0xff8B16FF),
         leading: FlatButton(
         onPressed: (){
@@ -146,7 +145,7 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
                 }
               ),
               Container(
-                height: 120,
+                height: 110,
                 color: Colors.black,
                 child: ListView.builder(
                   itemCount: 7,
@@ -186,24 +185,31 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
   onTileTap(int index){
 
     List<Note> thisLineNotes =
-        notes.sublist(currentNoteIndex, currentNoteIndex + 1).where((note) => note.line == notes[currentNoteIndex].line).toList();
+        widget.notes.sublist(currentNoteIndex, currentNoteIndex + 1).where((note) => note.line == widget.notes[currentNoteIndex].line).toList();
 
     //map notes to widgets
     List<Widget> tiles = thisLineNotes.map((note) {
       print(index - 24);
-      print(notes[currentNoteIndex].line);
+      print(widget.notes[currentNoteIndex].line);
       double height = MediaQuery.of(context).size.height;
       double tileHeight = height / 4;
       double offset = (1.5 + animationController.value) * tileHeight;
-      if(offset>172 && offset < 235) {
-        if(notes[currentNoteIndex].line == index - 24) {
-          _onTap(note);
-          _scoreIncrement();
-        } else {
-
+      print(offset);
+      if(height == 432.0) {
+        if( (offset>180 && offset < 234)){
+          if(widget.notes[currentNoteIndex].line == index - 24) {
+            _onTap(note);
+            _scoreIncrement();
+          }
         }
       }
       else {
+        if( (offset>139 && offset < 187) || (offset > 236 && offset <244) ){
+          if(widget.notes[currentNoteIndex].line == index - 24) {
+            _onTap(note);
+            _scoreIncrement();
+          }
+        }
       }
     }).toList();
   }
@@ -213,7 +219,7 @@ class _WeWishYouMerryXmasState extends State<WeWishYouMerryXmas> with SingleTick
       width: 45 ,
       child: Line(
         lineNumber: lineNumber,
-        currentNotes: notes.sublist(currentNoteIndex, currentNoteIndex + 4),
+        currentNotes: widget.notes.sublist(currentNoteIndex, currentNoteIndex + 4),
         animation: animationController,
       ),
     );

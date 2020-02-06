@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_piano/Screens/Home/Practice/Songs/WeWishUMerryXmas/we_wish_you_merry_xmas.dart';
+import 'package:pocket_piano/Screens/Home/Practice/notes.dart';
+import 'package:pocket_piano/Screens/Home/Practice/play_song.dart';
+import 'package:pocket_piano/Screens/Home/Practice/song_provider.dart';
 
 class Practice extends StatefulWidget {
   @override
@@ -7,6 +9,7 @@ class Practice extends StatefulWidget {
 }
 
 class _PracticeState extends State<Practice> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,98 +74,60 @@ class _PracticeState extends State<Practice> {
                           ),
                         ),
                         onPressed: (){
+                          List<Note> notes = initNotes1();
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => WeWishYouMerryXmas()),
+                            MaterialPageRoute(builder: (context) => PlaySong(notes: notes,)),
+                          );
+                        }
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Container(
+                  height: 180.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        "Silent night",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
+                      Text(
+                        "Complete: 20 %",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w400
+                        )
+                      ),
+                      RaisedButton(
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(19.0),
+                        ),
+                        color: Color(0xff8B16FF),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            "Practice",
+                            style: TextStyle(
+                              fontSize: 23.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            )
+                          ),
+                        ),
+                        onPressed: (){
+                          List<Note> notes = initNotes2();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PlaySong(notes: notes,)),
                           );
                         },
-
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
-                            style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
-                            )
-                          ),
-                        ),
-                        onPressed: (){},
-
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
-                            style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
-                            )
-                          ),
-                        ),
-                        onPressed: (){},
-
                       )
                     ],
                   ),
