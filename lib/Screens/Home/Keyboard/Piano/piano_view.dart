@@ -67,6 +67,7 @@ class _PianoViewState extends State<PianoView> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return PianoOctave(
+                    onTileTap: (int) {},
                     seconds: widget.seconds,
                     octave: index * 12,
                     keyWidth: widget.keyWidth,

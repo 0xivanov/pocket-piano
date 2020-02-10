@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_piano/Models/user.dart';
 import 'package:pocket_piano/Screens/Home/Practice/notes.dart';
 import 'package:pocket_piano/Screens/Home/Practice/play_song.dart';
 import 'package:pocket_piano/Screens/Home/Practice/song_provider.dart';
+import 'package:provider/provider.dart';
 
 class Practice extends StatefulWidget {
   @override
@@ -12,6 +15,7 @@ class _PracticeState extends State<Practice> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -37,186 +41,242 @@ class _PracticeState extends State<Practice> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
+                StreamBuilder(
+                  stream: Firestore.instance.collection('${user.uid}' + '1').document("We wish you a merry Christmas").snapshots(),
+                  builder: (context, snapshot) {
+                    return Container(
+                      height: 180.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            "We wish you a merry Christmas",
                             style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold
                             )
                           ),
-                        ),
-                        onPressed: (){
-                          List<Note> notes = initNotes1();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => PlaySong(notes: notes,)),
-                          );
-                        }
-                      )
-                    ],
-                  ),
+                          Text(
+                            "Complete: ${snapshot.data['score'].toString()}%",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w400
+                            )
+                          ),
+                          RaisedButton(
+                            elevation: 10.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(19.0),
+                            ),
+                            color: Color(0xff8B16FF),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                "Practice",
+                                style: TextStyle(
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                )
+                              ),
+                            ),
+                            onPressed: (){
+                              List<Note> notes = initNotes1();
+                              int notCountedPoints = 4;
+                              int tempo = 700;
+                              double keyWidth = 80;
+                              String firstKey = "E3";
+                              String lastKey = "F4";
+                              String name = "We wish you a merry Christmas";
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlaySong(
+                                  notes: notes, notCountedPoints: notCountedPoints, tempo: tempo, keyWidth: keyWidth, firstKey: firstKey, lastKey: lastKey, name: name)),
+                              );
+                            }
+                          )
+                        ],
+                      ),
+                    );
+                  }
                 ),
                 SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "Silent night",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
+                StreamBuilder(
+                  stream: Firestore.instance.collection('${user.uid}' + '1').document("Silent night").snapshots(),
+                  builder: (context, snapshot) {
+                    return Container(
+                      height: 180.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            "Silent night",
                             style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold
                             )
                           ),
-                        ),
-                        onPressed: (){
-                          List<Note> notes = initNotes2();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => PlaySong(notes: notes,)),
-                          );
-                        },
-                      )
-                    ],
-                  ),
+                          Text(
+                            "Complete: ${snapshot.data['score'].toString()}%",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w400
+                            )
+                          ),
+                          RaisedButton(
+                            elevation: 10.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(19.0),
+                            ),
+                            color: Color(0xff8B16FF),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                "Practice",
+                                style: TextStyle(
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                )
+                              ),
+                            ),
+                            onPressed: (){
+                              List<Note> notes = initNotes2();
+                              int notCountedPoints = 12;
+                              int tempo = 800;
+                              double keyWidth = 60;
+                              String firstKey = "B2";
+                              String lastKey = "F4";
+                              String name = "Silent night";
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlaySong(
+                                  notes: notes, notCountedPoints: notCountedPoints, tempo: tempo, keyWidth: keyWidth, firstKey: firstKey, lastKey: lastKey, name: name)),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  }
                 ),
                 SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
+                StreamBuilder(
+                  stream: Firestore.instance.collection('${user.uid}' + '1').document("Nothing else matters").snapshots(),
+                  builder: (context, snapshot) {
+                    return Container(
+                      height: 180.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            "Nothing else matters",
                             style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold
                             )
                           ),
-                        ),
-                        onPressed: (){},
-
-                      )
-                    ],
-                  ),
+                          Text(
+                            "Complete: ${snapshot.data['score'].toString()}%",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w400
+                            )
+                          ),
+                          RaisedButton(
+                            elevation: 10.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(19.0),
+                            ),
+                            color: Color(0xff8B16FF),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                "Practice",
+                                style: TextStyle(
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                )
+                              ),
+                            ),
+                            onPressed: (){
+                              List<Note> notes = initNotes3();
+                              int notCountedPoints = 31;
+                              int tempo = 500;
+                              double keyWidth = 50;
+                              String firstKey = "G2";
+                              String lastKey = "G4";
+                              String name = "Nothing else matters";
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlaySong(
+                                  notes: notes, notCountedPoints: notCountedPoints, tempo: tempo, keyWidth: keyWidth, firstKey: firstKey, lastKey: lastKey, name: name, )),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  }
                 ),
                 SizedBox(height: 10.0),
-                Container(
-                  height: 180.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "We Wish You a Merry Christmas",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      Text(
-                        "Complete: 20 %",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400
-                        )
-                      ),
-                      RaisedButton(
-                        elevation: 10.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                        ),
-                        color: Color(0xff8B16FF),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Practice",
+                StreamBuilder(
+                 stream: Firestore.instance.collection('${user.uid}' + '1').document("Despacito").snapshots(),
+                  builder: (context, snapshot) {
+                    return Container(
+                      height: 180.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            "Despacito",
                             style: TextStyle(
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold
                             )
                           ),
-                        ),
-                        onPressed: (){},
-
-                      )
-                    ],
-                  ),
+                          Text(
+                            "Complete: ${snapshot.data['score'].toString()}%",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w400
+                            )
+                          ),
+                          RaisedButton(
+                            elevation: 10.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(19.0),
+                            ),
+                            color: Color(0xff8B16FF),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                "Practice",
+                                style: TextStyle(
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                )
+                              ),
+                            ),
+                            onPressed: (){
+                              List<Note> notes = initNotes4();
+                              int notCountedPoints = 23;
+                              int tempo = 450;
+                              double keyWidth = 60;
+                              String name = "Despacito";
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlaySong(
+                                  notes: notes, notCountedPoints: notCountedPoints, tempo: tempo, keyWidth: keyWidth, name: name )),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  }
                 ),
               ]
             )

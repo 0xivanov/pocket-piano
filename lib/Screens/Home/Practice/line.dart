@@ -16,7 +16,6 @@ class Line extends AnimatedWidget {
     Animation<double> animation = super.listenable;
     //get heights
     double height = MediaQuery.of(context).size.height;
-    double tileHeight = height / 4;
     
     //get only notes for that line
     List<Note> thisLineNotes =
@@ -26,12 +25,13 @@ class Line extends AnimatedWidget {
     List<Widget> tiles = thisLineNotes.map((note) {
       //specify note distance from top
       int index = currentNotes.indexOf(note);
-      double offset = (0.0 - index + animation.value) * tileHeight;
+      double tileHeight = 0.0 + note.orderNumber;
+      double offset = (1.0 - index + animation.value) * height / 4;
       return Transform.translate(
         offset: Offset(0, offset),
         child: Tile(
           noteState: note.state,
-          height: height
+          height: tileHeight
         ),
       );
     }).toList();

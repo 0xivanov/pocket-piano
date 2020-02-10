@@ -33,9 +33,9 @@ class PianoKey extends StatelessWidget {
       highlightColor: Colors.grey,
       onTap: () {},
       onTapDown: (_) {
-        onTileTap(midi);
         instance.recordSound(midi, seconds);
         FlutterMidi.playMidiNote(midi: midi);
+        onTileTap(midi);
         print(MidiSound.midiSounds);
         print(MidiSound.midiSeconds);
       },

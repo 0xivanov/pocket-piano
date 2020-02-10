@@ -16,7 +16,6 @@ class _RecordsListState extends State<RecordsList> {
   Widget build(BuildContext context) {
 
     final records = Provider.of<List<Record>>(context);
-
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: records == null ? Loading() : ListView.builder(

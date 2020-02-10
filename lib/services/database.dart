@@ -20,15 +20,21 @@ class DatabaseService {
     });
   }
 
+  Future<void> updateScoreData(int score) async {
+    final CollectionReference recordsCollection = Firestore.instance.collection('$uid' + '1');
+    return await recordsCollection.document('${this.name}').setData({
+      'score': score
+    });
+  }
+
   List<Record> _recordListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return Record(
-        name: doc.data['name'] ?? '',
-        midiSounds: doc.data['midiSounds'] ?? null,
-        midiSeconds: doc.data['midiSeconds'] ?? null,
-        duration: doc.data['duration'] ?? 0
-
-      );
+        return Record(
+          name: doc.data['name'] ?? '',
+          midiSounds: doc.data['midiSounds'] ?? null,
+          midiSeconds: doc.data['midiSeconds'] ?? null,
+          duration: doc.data['duration'] ?? 0
+        );
     }).toList();
   }
 
