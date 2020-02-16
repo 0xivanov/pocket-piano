@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       });
     _timer.cancel();
   }
+  double keyWidth = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +96,18 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         actions: <Widget>[
           Row(
             children: <Widget>[
+              Slider(
+                activeColor: Colors.white,
+                inactiveColor: Colors.black,
+                value: keyWidth,
+                onChanged: (i) {
+                  setState(() {
+                    keyWidth = i;
+                  });
+                },
+                max: 100,
+                min: 50,
+              ),
               FlatButton.icon(
                 label: Text("Reset"),
                 onPressed: (){
@@ -141,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               Flexible(
                 child: PianoView(
                   seconds: _seconds.toStringAsFixed(1),
-                  keyWidth: 80,
+                  keyWidth: keyWidth,
                   labelsOnlyOctaves: false,
                   feedback: true,
                 ),
@@ -149,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               Flexible(
                 child: PianoView(
                   seconds: _seconds.toStringAsFixed(1),
-                  keyWidth: 80,
+                  keyWidth: keyWidth,
                   labelsOnlyOctaves: false,
                   feedback: true,
                 ),

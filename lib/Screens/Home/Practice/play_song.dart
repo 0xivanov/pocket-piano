@@ -117,7 +117,7 @@ class _PlaySongState extends State<PlaySong> with SingleTickerProviderStateMixin
                 if(isFast) {
                   setState(() {
                     isFast = !isFast;
-                    animationController.duration = Duration(milliseconds: widget.tempo + 500);
+                    animationController.duration = Duration(milliseconds: widget.tempo + 300);
                   });
                 }
                 else {
@@ -233,7 +233,6 @@ class _PlaySongState extends State<PlaySong> with SingleTickerProviderStateMixin
     List<Note> thisLineNotes =
         widget.notes.sublist(currentNoteIndex, currentNoteIndex + 1).where((note) => note.line == widget.notes[currentNoteIndex].line).toList();
 
-    //map notes to widgets
     List<Widget> tiles = thisLineNotes.map((note) {
       int padding = note.orderNumber;
       if(padding < 0) {
@@ -241,7 +240,6 @@ class _PlaySongState extends State<PlaySong> with SingleTickerProviderStateMixin
         double height = MediaQuery.of(context).size.height;
         double tileHeight = height / 4;
         double offset = (1.5 + animationController.value) * tileHeight;
-        print(offset);
         if(height == 432.0) {
           if( (offset>180 && offset < 234 + padding)){
             if(widget.notes[currentNoteIndex].line == index - 24) {
@@ -275,8 +273,6 @@ class _PlaySongState extends State<PlaySong> with SingleTickerProviderStateMixin
         double height = MediaQuery.of(context).size.height;
         double tileHeight = height / 4;
         double offset = (1.5 + animationController.value) * tileHeight;
-        print(offset);
-        print(padding);
         if(height == 432.0) {
           if( (offset>180 + padding && offset < 234)){
             if(widget.notes[currentNoteIndex].line == index - 24) {
