@@ -282,8 +282,8 @@ class _PracticeState extends State<Practice> {
                               ),
                               onPressed: (){
                                 List<Note> notes = initNotes4();
-                                int notCountedPoints = 5;
-                                int tempo = 650;
+                                int notCountedPoints = 7;
+                                int tempo = 470;
                                 double keyWidth = 60;
                                 String firstKey = "F3";
                                 String lastKey = "C5";
