@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1014525384472",
+    "firebase_url": "https://pocketpiano-f0068.firebaseio.com",
+    "project_id": "pocketpiano-f0068",
+    "storage_bucket": "pocketpiano-f0068.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014525384472:android:89f87f51c71590260eb06d",
+        "android_client_info": {
+          "package_name": "com.example.pocket_piano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014525384472-4p3esgjidfs62hk9i82gssc5qmko3me6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA30rio1A1GaTAhfxecBTt0S35bFyWVg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014525384472-4p3esgjidfs62hk9i82gssc5qmko3me6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
